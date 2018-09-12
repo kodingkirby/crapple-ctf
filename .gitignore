@@ -1,5 +1,3 @@
 node_modules/
-docs/_book
 npm-debug.log
-vars.env
 package-lock.json
