@@ -5,8 +5,8 @@ validator = require('validator')
 module.exports = {
 	vName : function (val){
 		if (val) 
-			//return validator.isAlpha(val + '')
-		return true
+			return validator.isAlpha(val + '')
+		return false
 	},
 	vEmail : function (val){
 		if (val)

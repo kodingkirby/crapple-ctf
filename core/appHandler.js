@@ -283,5 +283,7 @@ module.exports.contactUs = function (req, res) {
 module.exports.contactUsSubmit = function(req, res) {
 	console.log('recieved email');
 	console.log(req.body.text);
+
+	
 	res.render('app/contactus');
 }

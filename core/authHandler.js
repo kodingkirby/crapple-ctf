@@ -54,16 +54,16 @@ module.exports.forgotPw = function (req, res) {
 						pr.tokenHash = sha512(token)
 						pr.save()
 						// SEND_EMAIL (token) at this step
-						req.flash('info', 'If account exists, you will get an email on the registered email')
+						req.flash('info', 'If account exists, you will get an email on the registered email. I wouldn\'t count on it though')
 						res.redirect('/login')
 					}else{
 						// Cooldown time to prevent DoS
-						req.flash('info', 'If account exists, you will get an email on the registered email')
+						req.flash('info', 'If account exists, you will get an email on the registered email. I wouldn\'t count on it though')
 						res.redirect('/login')
 					}
 				})
 			} else {
-				req.flash('info', 'If account exists, you will get an email on the registered email')
+				req.flash('info', 'If account exists, you will get an email on the registered email. I wouldn\'t count on it though.')
 				res.redirect('/login')
 			}
 		})
