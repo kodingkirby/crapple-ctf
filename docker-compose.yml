@@ -18,6 +18,4 @@ services:
       - "3306"
     env_file:
       - ./vars.env
-    volumes:
-      - . /mysql_init/usercreation.sql:/docker-entrypoint-initdb.d/usercreation.sql
     

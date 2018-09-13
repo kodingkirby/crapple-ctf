@@ -32,6 +32,12 @@ sequelize
   }, function (err) {
     console.log('An error occurred while creating the table:', err);
   })
+sequelize.query("USE thinkdifferent").then(myTableRows => {
+  console.log(myTableRows)
+})
+sequelize.query("SELECT * FROM Users").then(myTableRows => {
+  console.log(myTableRows)
+})
 
 var db = {};
 
