@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^1.0.3",
+    "casperjs": "^1.1.4",
     "crypto-random-string": "^1.0.0",
     "csurf": "^1.9.0",
     "ejs": "^2.5.7",
@@ -27,7 +28,9 @@
     "mysql2": "^1.4.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "phantomjs": "^2.1.7",
     "sequelize": "^4.13.10",
+    "slimerjs": "^1.0.0",
     "x-xss-protection": "^1.0.0"
   }
 }

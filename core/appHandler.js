@@ -273,3 +273,15 @@ module.exports.listUsersAPI = function (req, res) {
 		})
 	})
 }
+
+module.exports.contactUs = function (req, res) {
+	res.render('app/contactus');
+}
+
+
+//todo
+module.exports.contactUsSubmit = function(req, res) {
+	console.log('recieved email');
+	console.log(req.body.text);
+	res.render('app/contactus');
+}
