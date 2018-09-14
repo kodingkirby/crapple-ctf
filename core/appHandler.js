@@ -308,15 +308,11 @@ async function mrClicky(url) {
   await page.goto('file:///app/solutions/loginbossman.html');
   console.log('Visited page titled: '+ await page.title());
   await page.screenshot({path: 'login.png', fullPage: true});
-
-  //await page.evaluate(() => console.log(`url is ${location.href}`));
-
-  //then click whatever url the attacker has submitted
+  await page.waitForNavigation({ waitUntil: 'networkidle'});
   await page.goto(url);
   console.log('Visited page titled: ' + await page.title());
-
   await page.screenshot({path: 'hack.png', fullPage: true});
-  //await page.evaluate(() => console.log(`url is ${location.href}`));
+  await page.waitForNavigation({ waitUntil: 'networkidle' });
 
   await browser.close();
 }
