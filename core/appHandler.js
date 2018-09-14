@@ -1,5 +1,6 @@
 var db = require('../models')
 var vh = require('./validationHandler')
+var rc = require('../roboclient/client.js')
 var bCrypt = require('bcrypt')
 const execFile = require('child_process').execFile
 var mathjs = require('mathjs')
@@ -283,7 +284,13 @@ module.exports.contactUs = function (req, res) {
 module.exports.contactUsSubmit = function(req, res) {
 	console.log('recieved email');
 	console.log(req.body.text);
+	//Parse text, find link
+	//Set var link = href
 
-	
+	console.log('beginning roboclient/client.example()');
+
+	//run roboclient/client.example
+
+
 	res.render('app/contactus');
 }

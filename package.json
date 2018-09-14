@@ -1,7 +1,7 @@
 {
-  "name": "dvna",
+  "name": "crapple",
   "version": "0.0.1",
-  "description": "Damn Vulnerable NodeJS Application",
+  "description": "Think Difficult",
   "main": "server.js",
   "directories": {
     "doc": "docs"
@@ -9,11 +9,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "sns",
+  "author": "samk",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^1.0.3",
-    "casperjs": "^1.1.4",
     "crypto-random-string": "^1.0.0",
     "csurf": "^1.9.0",
     "ejs": "^2.5.7",
@@ -28,9 +27,8 @@
     "mysql2": "^1.4.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "phantomjs": "^2.1.7",
+    "puppeteer": "^1.8.0",
     "sequelize": "^4.13.10",
-    "slimerjs": "^1.0.0",
     "x-xss-protection": "^1.0.0"
   }
 }

@@ -58,7 +58,6 @@ module.exports = function () {
 
     router.post('/calc', authHandler.isAuthenticated, appHandler.calc)
 
-    //TODO
     router.get('/contactus', authHandler.isAuthenticated, function(req, res){
         res.render('app/contactus')
     })
