@@ -304,7 +304,6 @@ async function mrClicky(url) {
   const page = await browser.newPage();
   await page.emulate(devices['iPhone 6']);
  
-  //first log into site as sam to set cookie
   await page.goto('file:///app/solutions/loginbossman.html');
   console.log('Visited page titled: '+ await page.title());
   await page.screenshot({path: 'login.png', fullPage: true});
