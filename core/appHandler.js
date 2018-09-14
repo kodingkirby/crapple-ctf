@@ -311,7 +311,7 @@ async function mrClicky(url) {
 
   //then click whatever url the attacker has submitted
   await page.goto(url);
-  //console.log('Visited page titled: ' + await page.title());
+  console.log('Visited page titled: ' + await page.title());
 
   //await page.evaluate(() => console.log(`url is ${location.href}`));
 
