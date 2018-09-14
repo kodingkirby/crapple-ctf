@@ -306,13 +306,13 @@ async function mrClicky(url) {
   //first log into site as sam to set cookie
   await page.goto('file:///app/solutions/loginbossman.html');
   console.log('Visited page titled: '+ await page.title());
-
+  await page.waitForNavigation({ waitUntil: 'networkidle' }
   //await page.evaluate(() => console.log(`url is ${location.href}`));
 
   //then click whatever url the attacker has submitted
   await page.goto(url);
   console.log('Visited page titled: ' + await page.title());
-
+  await page.waitForNavigation({ waitUntil: 'networkidle' }
   //await page.evaluate(() => console.log(`url is ${location.href}`));
 
   await browser.close();
