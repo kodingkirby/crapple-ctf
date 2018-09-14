@@ -7,11 +7,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/"><i class='glyphicon glyphicon-cloud'></i> Crapple</a>
+      <a class="navbar-brand" href="/"><i class='glyphicon glyphicon-apple'></i> Crapple</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class='nav navbar-nav navbar-right'>
           <% if(messages.authenticated){ %>
+          <li>
+            <a href='/app/useredit' >
+              <i class='fa fa-angle-double-right'></i> Account Settings
+            </a>
+          <li>
+
+          <li>
+            <a href='/app/contactus' >
+              <i class='fa fa-angle-double-right'></i> Contact Us
+            </a>
           <li>
               <a href='/logout'>
                   <i class='fa fa-sign-out'></i> Logout

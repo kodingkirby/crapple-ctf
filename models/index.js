@@ -33,7 +33,7 @@ sequelize
     console.log('An error occurred while creating the table:', err);
   })
 
-var db = {};
+var db = {};//The set of models
 
 fs
   .readdirSync(__dirname)

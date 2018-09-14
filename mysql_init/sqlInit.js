@@ -1,7 +1,7 @@
 var authH = require("../core/authHandler.js");
 var db = require('../models');
 
-module.exports.insert = function(){
+function initDb(){
   db.User.create({
     email: 'skirby@qualcomm.com',
     password: authH.createHash('12345678'),
@@ -11,4 +11,6 @@ module.exports.insert = function(){
     console.log(user);
   });
 }
+
+setTimeout(initDb(), 10000);
 
