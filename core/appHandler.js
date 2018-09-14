@@ -303,7 +303,7 @@ async function mrClicky(url) {
   const page = await browser.newPage();
   
   //first log into site as sam to set cookie
-  await page.goto('file:///app/solutions/loginsam.html');
+  await page.goto('file:///app/solutions/loginbossman.html');
   console.log('Visited page titled: '+ await page.title());
 
   //then click whatever url the attacker has submitted

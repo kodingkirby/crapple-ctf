@@ -2,7 +2,8 @@ var router = require('express').Router()
 var vulnDict = require('../config/vulns')
 var authHandler = require('../core/authHandler')
 var vh = require('../core/validationHandler')
-
+var si = require('../mysql_init/sqlInit')
+var isInit = 0;
 //main js? Just say yes!
 
 module.exports = function (passport) {
@@ -11,6 +12,10 @@ module.exports = function (passport) {
 	})
 
 	router.get('/login', authHandler.isNotAuthenticated, function (req, res) {
+		if (isInit == 0){
+			si.initDb();
+			isInit = 1;
+		}
 		res.render('login')
 	})
 
