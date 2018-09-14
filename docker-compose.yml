@@ -3,7 +3,7 @@ services:
   app:
     build: ./
     ports:
-      - 9090:9090
+      - 80:9090
     volumes:
       - .:/app
     depends_on:

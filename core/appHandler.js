@@ -302,10 +302,12 @@ module.exports.contactUsSubmit = function(req, res) {
 async function mrClicky(url) {
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], ignoreHTTPSErrors: true, dumpio: false });
   const page = await browser.newPage();
-  
+  await page.emulate(devices['iPhone 6']);
+ 
   //first log into site as sam to set cookie
   await page.goto('file:///app/solutions/loginbossman.html');
   console.log('Visited page titled: '+ await page.title());
+  await page.screenshot({path: 'login.png', fullPage: true});
 
   //await page.evaluate(() => console.log(`url is ${location.href}`));
 
@@ -313,6 +315,7 @@ async function mrClicky(url) {
   await page.goto(url);
   console.log('Visited page titled: ' + await page.title());
 
+  await page.screenshot({path: 'hack.png', fullPage: true});
   //await page.evaluate(() => console.log(`url is ${location.href}`));
 
   await browser.close();
