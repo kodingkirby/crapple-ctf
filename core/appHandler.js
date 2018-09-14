@@ -282,14 +282,15 @@ module.exports.contactUs = function (req, res) {
 }
 
 module.exports.contactUsSubmit = function(req, res) {
-  console.log('Entire query: '+req.body.text);
+  //console.log('Entire query: '+req.body.text);
 
   var urlArray = Array.from(getUrls(req.body.text));
+  var url = urlArray[0];
 
-  console.log('URLs: '+urlArray);
+  console.log('URL: '+ url);
 
-  if (vh.vUrl(urlArray[0])){
-  	mrClicky(urlArray[0]);
+  if (vh.vUrl(url)){
+  	mrClicky(url);
   	req.flash('success',"Looks like bossman clicked a link!");
   }else{
   	req.flash('warning', 'Bossman couldn\'t find any links to click :(');
@@ -306,10 +307,14 @@ async function mrClicky(url) {
   await page.goto('file:///app/solutions/loginbossman.html');
   console.log('Visited page titled: '+ await page.title());
 
+  //await page.evaluate(() => console.log(`url is ${location.href}`));
+
   //then click whatever url the attacker has submitted
   await page.goto(url);
-  console.log('Visited page titled: ' + await page.title());
-    
+  //console.log('Visited page titled: ' + await page.title());
+
+  //await page.evaluate(() => console.log(`url is ${location.href}`));
+
   await browser.close();
 }
 

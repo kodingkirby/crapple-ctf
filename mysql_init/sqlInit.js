@@ -1,19 +1,6 @@
 var authH = require("../core/authHandler.js");
 var db = require('../models');
 
-// module.exports.initDb = function(){
-//   console.log('initdb is running');
-//   db.User.bulkCreate([
-//     email: 'skirby@qualcomm.com',
-//     password: authH.createHash('12345678'),
-//     name: 'Sam',
-//     login: 'skirby'
-//   ]).then(function (users) {
-//     console.log(users);
-//   });
-// }
-
-
 module.exports.initDb = function(){
 	db.User.bulkCreate([
 	  { name: 'Bossman', login: 'bossman', email: 'bossman@crapple.com', password: authH.createHash('yOuW1ln3v3RgUe55th3Passw0rd'), role: 'admin' },

@@ -20,3 +20,10 @@ services:
     env_file:
       - ./vars.env
     restart: on-failure
+  nginx:
+    build:
+      context: ./nginx
+    depends_on:
+      - "app"
+    ports:
+      - "80:80"
