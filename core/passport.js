@@ -3,6 +3,7 @@ var LocalStrategy = require('passport-local').Strategy
 var bCrypt = require('bcrypt')
 var vh = require('./validationHandler')
 
+//pass the port, AW YEA
 module.exports = function (passport) {
 
     passport.serializeUser(function (user, done) {
@@ -68,8 +69,8 @@ module.exports = function (passport) {
             }else{
                 findOrCreateUser = function () {
                     db.User.findOne({
-                        where: {
-                            'email': username
+                        where: {//TODO
+                            'email': username //for the love of god bug check this
                         }
                     }).then(function (user) {
                         if (user) {

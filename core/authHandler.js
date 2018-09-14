@@ -6,11 +6,13 @@ var cryptoRandomString = require('crypto-random-string')
 var s512 = require('hash.js/lib/hash/sha/512')
 var coolDownTime = 5*60*1000 // 5 mins
 
+//auth handler? hardly knew her!
+
 function sha512 (val) {
 	return s512().update(val).digest('hex')
 }
 
-var createHash = function (password) {
+module.exports.createHash = function (password) {
 	return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
 }
 
@@ -54,6 +56,7 @@ module.exports.forgotPw = function (req, res) {
 						pr.tokenHash = sha512(token)
 						pr.save()
 						// SEND_EMAIL (token) at this step
+						//https://www.w3schools.com/nodejs/nodejs_email.asp
 						req.flash('info', 'If account exists, you will get an email on the registered email. I wouldn\'t count on it though')
 						res.redirect('/login')
 					}else{
@@ -68,7 +71,7 @@ module.exports.forgotPw = function (req, res) {
 			}
 		})
 	} else {
-		req.flash('danger', "Error, Username contains special charecters")
+		req.flash('danger', "Error, Username contains special characters")
 		res.redirect('/forgotpw')
 	}
 }

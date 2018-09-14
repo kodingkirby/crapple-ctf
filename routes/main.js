@@ -3,6 +3,8 @@ var vulnDict = require('../config/vulns')
 var authHandler = require('../core/authHandler')
 var vh = require('../core/validationHandler')
 
+//main js? Just say yes!
+
 module.exports = function (passport) {
 	router.get('/', authHandler.isAuthenticated, function (req, res) {
 		res.redirect('/homepage')

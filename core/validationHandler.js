@@ -1,6 +1,6 @@
 validator = require('validator')
 
-// We create a custom module to enable customization and consistancy
+//validate ALL the things!!!!
 
 module.exports = {
 	vName : function (val){

@@ -1,8 +1,9 @@
 var db = require('../models')
 var vh = require('./validationHandler')
-var rc = require('../roboclient/client')
 var bCrypt = require('bcrypt')
 const puppeteer = require('puppeteer');
+var getUrls = require( 'get-urls' );
+const devices = require('puppeteer/DeviceDescriptors');
 const execFile = require('child_process').execFile
 var mathjs = require('mathjs')
 const Op = db.Sequelize.Op
@@ -280,31 +281,35 @@ module.exports.contactUs = function (req, res) {
 	res.render('app/contactus');
 }
 
-
-//todo
 module.exports.contactUsSubmit = function(req, res) {
-	console.log('recieved email');
-	console.log(req.body.text);
-	//Parse text, find link
-	//Set var link = href
-	//var url = 'file:///app/solutions/registerbossman.html';
-	var url = req.body.text;
+  console.log('Entire query: '+req.body.text);
 
-	mrClicky(url);
+  var urlArray = Array.from(getUrls(req.body.text));
 
+  console.log('URLs: '+urlArray);
 
-	res.render('app/contactus');
+  if (vh.vUrl(urlArray[0])){
+  	mrClicky(urlArray[0]);
+  	req.flash('success',"Looks like bossman clicked a link!");
+  }else{
+  	req.flash('warning', 'Bossman couldn\'t find any links to click :(');
+  }
+
+  res.render('app/contactus');
 }
 
 async function mrClicky(url) {
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], ignoreHTTPSErrors: true, dumpio: false });
   const page = await browser.newPage();
-  page.once('load', () => console.log('Page loaded!'));
-
-  //first log into site as sam
+  
+  //first log into site as sam to set cookie
   await page.goto('file:///app/solutions/loginsam.html');
+  console.log('Visited page titled: '+ await page.title());
 
+  //then click whatever url the attacker has submitted
   await page.goto(url);
+  console.log('Visited page titled: ' + await page.title());
     
-  browser.close();
+  await browser.close();
 }
+
