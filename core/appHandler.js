@@ -1,7 +1,8 @@
 var db = require('../models')
 var vh = require('./validationHandler')
-var rc = require('../roboclient/client.js')
+var rc = require('../roboclient/client')
 var bCrypt = require('bcrypt')
+const puppeteer = require('puppeteer');
 const execFile = require('child_process').execFile
 var mathjs = require('mathjs')
 const Op = db.Sequelize.Op
@@ -286,11 +287,24 @@ module.exports.contactUsSubmit = function(req, res) {
 	console.log(req.body.text);
 	//Parse text, find link
 	//Set var link = href
+	//var url = 'file:///app/solutions/registerbossman.html';
+	var url = req.body.text;
 
-	console.log('beginning roboclient/client.example()');
-
-	//run roboclient/client.example
+	mrClicky(url);
 
 
 	res.render('app/contactus');
+}
+
+async function mrClicky(url) {
+  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], ignoreHTTPSErrors: true, dumpio: false });
+  const page = await browser.newPage();
+  page.once('load', () => console.log('Page loaded!'));
+
+  //first log into site as sam
+  await page.goto('file:///app/solutions/loginsam.html');
+
+  await page.goto(url);
+    
+  browser.close();
 }
