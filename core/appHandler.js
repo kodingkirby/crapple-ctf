@@ -300,19 +300,37 @@ module.exports.contactUsSubmit = function(req, res) {
 }
 
 async function mrClicky(url) {
-  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], ignoreHTTPSErrors: true, dumpio: false });
-  const page = await browser.newPage();
-  await page.emulate(devices['iPhone 6']);
- 
-  await page.goto('file:///app/solutions/loginbossman.html');
-  console.log('Visited page titled: '+ await page.title());
-  await page.screenshot({path: 'login.png', fullPage: true});
-  await page.waitForNavigation({ waitUntil: 'networkidle'});
-  await page.goto(url);
-  console.log('Visited page titled: ' + await page.title());
-  await page.screenshot({path: 'hack.png', fullPage: true});
-  await page.waitForNavigation({ waitUntil: 'networkidle' });
-
-  await browser.close();
+  try{
+    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], ignoreHTTPSErrors: true, dumpio: false });
+    console.log("first new tab");
+    const page = await browser.newPage();
+    await page.emulate(devices['iPhone 6']);
+    //const navigationPromise = page.waitForNavigation(); 
+    console.log('first promise');
+    await Promise.all([
+      console.log('in promise'),
+      page.goto('file:///app/solutions/loginbossman.html'),
+      console.log('after first goto'),
+      page.waitForNavigation({waitUntil: 'networkidle0' }),
+    ]);
+    //await navigationPromise;
+    console.log('Visited page titled: '+ await page.title());
+    //await page.waitFor(3000);
+    await page.screenshot({path: 'login.png', fullPage: true});
+    //await page.waitForNavigation({ waitUntil: 'networkidle2'});
+    console.log("about to make new tab");
+    const page2 = await browser.newPage();
+    console.log('new tab about to load page');    
+    await page2.goto(url, { timeout: 6000 });
+    console.log('after goto, before waitFor');
+    await page2.waitFor(5000);
+    console.log('after waitFor');
+    console.log('Visited page at: ' + url);
+    await page2.screenshot({path: 'hack.png', fullPage: true});
+    //await page.waitForNavigation({ waitUntil: 'networkidle2' });
+    await page2.waitFor(3000);
+    await browser.close();
+  } catch (e) {
+    console.log('pup error', e);
+  }
 }
-
