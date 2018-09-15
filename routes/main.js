@@ -9,7 +9,7 @@ var metadata = require('node-ec2-metadata');
 var hostname='localhost';
 var isInit = 0;
 
-
+/*
 metadata.getMetadataForInstance('public-hostname')
 .then(function(instanceId) {
     console.log("AWS Public Hostname: " + instanceId);
@@ -17,9 +17,9 @@ metadata.getMetadataForInstance('public-hostname')
 })
 .fail(function(error) {
     console.log("Error: " + error);
-    //hostname = os.hostname();
+   // hostname = os.hostname();
 });
-
+*/
 //dockername = os.hostname();
 //console.log('Dockername: ' + dockername); 
 //main js? Just say yes!
@@ -34,6 +34,8 @@ module.exports = function (passport) {
       si.initDb();
       console.log(hostname);
 
+      hostname = process.env.CTF_DNS_FULL;
+      console.log('yer hostname is: ' + hostname);
       replace({
         regex: "wtf", 
         replacement: hostname,
