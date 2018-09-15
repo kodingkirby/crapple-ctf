@@ -13,18 +13,25 @@
       <ul class='nav navbar-nav navbar-right'>
           <% if(messages.authenticated){ %>
           <li>
-            <a href='/app/useredit' >
-              <i class='fa fa-angle-double-right'></i> Account Settings
+            <a href='/app/admin' >
+              Admin Panel
             </a>
+          </li>
+
           <li>
+            <a href='/app/useredit' >
+               Account Settings
+            </a>
+          </li>
 
           <li>
             <a href='/app/contactus' >
-              <i class='fa fa-angle-double-right'></i> Contact Us
+              Contact Us
             </a>
+          </li>
           <li>
               <a href='/logout'>
-                  <i class='fa fa-sign-out'></i> Logout
+                Logout
               </a>
           </li>
           <% } %>

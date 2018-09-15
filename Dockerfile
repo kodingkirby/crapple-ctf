@@ -10,6 +10,7 @@ RUN apt-get install -yyq gconf-service lsb-release wget xdg-utils
 # and fonts
 RUN apt-get install -yyq fonts-liberation
 
+ADD ./ /app
 WORKDIR /app
 
 RUN npm install -g nodemon

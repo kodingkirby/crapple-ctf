@@ -42,6 +42,10 @@ module.exports = function () {
         res.render('app/adminusers')
     })
 
+    router.get('/admin/supersecret', authHandler.isAuthenticated, authHandler.isAdmin, function(req, res){
+        res.render('app/supersecret')
+    })
+
     router.get('/redirect', appHandler.redirect)
 
     router.post('/redirect', appHandler.redirectSubmit)
