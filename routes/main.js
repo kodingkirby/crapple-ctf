@@ -3,11 +3,12 @@ var vulnDict = require('../config/vulns')
 var authHandler = require('../core/authHandler')
 var vh = require('../core/validationHandler')
 var si = require('../mysql_init/sqlInit')
-const replace = require('replace-in-file');
+var replace = require("replace");
 //const os = require('os');
 var metadata = require('node-ec2-metadata');
-//var hostname;
+var hostname='localhost';
 var isInit = 0;
+
 
 metadata.getMetadataForInstance('public-hostname')
 .then(function(instanceId) {
@@ -30,24 +31,19 @@ module.exports = function (passport) {
 
 	router.get('/login', authHandler.isNotAuthenticated, function (req, res) {
 		if (isInit == 0){
-		  si.initDb();
-                  
-const hostreplace = {
-  files: '/solutions/*.html',
-  from: 'queryAndPopInAwsHostNameHere',
-  to: hostname,
-};
-		try {
-                    const changes = replace.sync(hostreplace);
-                    console.log('Modified files:', changes.join(', '));
-                  }
-                  catch (error){
-                    console.error('error happened with hostname replace:', error);
-                  }                 
-                  isInit = 1;
-                        
-		}
-		res.render('login')
+      si.initDb();
+      console.log(hostname);
+
+      replace({
+        regex: "wtf", 
+        replacement: hostname,
+        paths: ['/app/solutions/loginbossman.html'],
+        silent: false,
+      });              
+      isInit = 1;
+
+    }
+    res.render('login')
 	})
 
 	router.get('/homepage', authHandler.isAuthenticated, function (req, res){
